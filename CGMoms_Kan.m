@@ -1,8 +1,6 @@
 % Author:        Léo Martire.
 % Mail:          leo.martire@outlook.com
 % Description:   See below.
-% Last modified: 24/07/17.
-% Usage:         N/A.
 % Notes:         Requires script "vectorial_nchoosek.m"
 
 function mom = CGMoms_Kan(alpha, MU, SIGMA)
