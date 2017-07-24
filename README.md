@@ -3,7 +3,7 @@ Compute all moments up to a given degree of a multivariate Gaussian distribution
 
 ## Problem Description
 The considered distribution is the classical n-dimensional normalised multivariate Gaussian distribution:
-- \rho(x) := (2 * \pi)^(- 0.5 * n) * (det(\Sigma))^(- 0.5) * \exp(- 0.5 * (x - \mu)' * \Sigma^{-1} * (x - \mu)).
+- \rho(x) := (2\pi)^{-n/2} * (det(\Sigma))^{-1/2} * \exp(- 0.5 * (x - \mu)^T * \Sigma^{-1} * (x - \mu)).
 
 ## Usage
 Let:
@@ -26,8 +26,8 @@ in order to compute only the moment of order `alpha` of \rho.
 ## Example
 ```matlab
 n = 2;
-MU = [0; 0];
-SIGMA = [0.8 ^ 2, 0; 0.8 ^ 2, 0];
+MU = [1; 1];
+SIGMA = [3, 4; 5, 6];
 alpha_vals = [0, 0;
               1, 0;
               0, 1;
