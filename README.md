@@ -26,7 +26,7 @@ in order to compute only the moment of order `alpha` of \rho.
 ## Example
 ```matlab
 n = 2;
-MU = [1; 1];
+MU = [1; 2];
 SIGMA = [3, 4; 5, 6];
 alpha_vals = [0, 0;
               1, 0;
