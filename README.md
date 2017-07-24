@@ -3,25 +3,25 @@ Compute all moments up to a given degree of a multivariate Gaussian distribution
 
 ## Problem Statement
 The considered distribution is the classical n-dimensional normalised multivariate Gaussian distribution:
-- rho(x) := (2 * pi)^(- 0.5 * n) * (det(SIGMA))^(- 0.5) * exp(- 0.5 * (x - MU)' * inv(SIGMA) * (x - MU)).
+- \rho(x) := (2 * \pi)^(- 0.5 * n) * (det(\Sigma))^(- 0.5) * \exp(- 0.5 * (x - \mu)' * inv(\Sigma) * (x - \mu)).
 
 ## Usage
 Let:
-- alpha_vals be the full matrix of orders of the wanted moments (assumed to be a matrix, size s * n where s is the number of moments up to a maximum degree d),
-- MU be the mean vector of rho,
-- SIGMA be the covariance matrix of rho.
+- `alpha_vals` be the full matrix of orders of the wanted moments (assumed to be a matrix, size s * n where s is the number of moments up to a maximum degree d),
+- `MU` be the mean vector of rho,
+- `SIGMA` be the covariance matrix of rho.
 
 Call:
 ```matlab
 CGMoms(alpha_vals, MU, SIGMA, verbose)
 ```
-in order to compute the moments corresponding to the lines of alpha_vals of rho.  
+in order to compute the moments corresponding to the lines of `alpha_vals` of \rho.  
 
 Alternatively, call:
 ```matlab
 CGMoms_Kan(alpha, MU, SIGMA)
 ```
-in order to compute only the moment of order alpha of rho.
+in order to compute only the moment of order `alpha` of \rho.
 
 ## Example
 ```matlab
