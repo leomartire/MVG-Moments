@@ -3,7 +3,7 @@ Compute all moments up to a given degree of a multivariate Gaussian distribution
 
 ## Problem Statement
 The considered distribution is the classical n-dimensional normalised multivariate Gaussian distribution:
-- \rho(x) := (2 * \pi)^(- 0.5 * n) * (det(\Sigma))^(- 0.5) * \exp(- 0.5 * (x - \mu)' * inv(\Sigma) * (x - \mu)).
+- \rho(x) := (2 * \pi)^(- 0.5 * n) * (det(\Sigma))^(- 0.5) * \exp(- 0.5 * (x - \mu)' * \Sigma^{-1} * (x - \mu)).
 
 ## Usage
 Let:
