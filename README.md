@@ -1,7 +1,7 @@
 # MVG-Moments
 Compute all moments up to a given degree of a multivariate Gaussian distribution.
 
-## Problem Statement
+## Problem Description
 The considered distribution is the classical n-dimensional normalised multivariate Gaussian distribution:
 - \rho(x) := (2 * \pi)^(- 0.5 * n) * (det(\Sigma))^(- 0.5) * \exp(- 0.5 * (x - \mu)' * \Sigma^{-1} * (x - \mu)).
 
@@ -41,3 +41,7 @@ alpha_vals = [0, 0;
 moments = CGMoms(alpha_vals, MU, SIGMA, verbose);
 ```
 After the previous execution, `moments` is now a 10 * 1 matrix containing the moments of rho parametrised by `MU` and `SIGMA`.
+
+## References
+- Kan, R. (2008). From moments of sum to moments of product. Journal of Multivariate Analysis, 99(3):542 - 554.
+- Willink, R. (2005). Normal moments and hermite polynomials. Statistics & Probability Letters, 73(3):271 - 275.
