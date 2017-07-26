@@ -1,8 +1,6 @@
 % Author:        Léo Martire.
 % Mail:          leo.martire@outlook.com
 % Description:   See below.
-% Last modified: 24/07/17.
-% Usage:         N/A.
 % Notes:         N/A.
 
 function [NCK] = vectorial_nchoosek(N, K)

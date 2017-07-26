@@ -73,7 +73,7 @@ function [final_moms] = CGMoms(alpha_vals, MU, SIGMA, verbose)
     if verb == 1
       disp(['[', mfilename, '] Distribution is not standard, we use the full formulae.'])
     end
-    
+ 
     % First moments. %%%%%%%%%%%%%%
     % Prepare pre-list for values of \alpha. This should contain all
     % combinations up to degree d, but containing at least one 0 and the

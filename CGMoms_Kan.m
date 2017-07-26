@@ -20,7 +20,7 @@ function mom = CGMoms_Kan(alpha, MU, SIGMA)
 
   % See Proposition 2 in [Kan, R. (2008), "From moments of sum to moments of
   % product"].
-  
+
   % The first n sums of the formula are viewed as one sum on all possible
   % combinations. Example (n=2):
   % instead of
@@ -53,7 +53,7 @@ function mom = CGMoms_Kan(alpha, MU, SIGMA)
       h_terms = ((0.5 * h'*SIGMA*h)^r) * ((h' * MU) ^ (card_a - 2 * r));
       % Denominator of the fraction in the formula.
       factorials = factorial(r) * factorial(card_a - 2 * r);
-      
+   
       % Add the product of the terms to the total.
       mom = mom + m_one_power * nchoosek_terms * h_terms / factorials;
     end
