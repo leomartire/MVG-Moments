@@ -1,5 +1,5 @@
 # MVG-Moments
-Compute all moments up to a given degree of a multivariate Gaussian distribution.
+A MatLab module to compute moments of multivariate Gaussian distributions, including non-trivial ones.
 
 ## Problem Description
 The considered distribution is the classical n-dimensional normalised multivariate Gaussian distribution:
