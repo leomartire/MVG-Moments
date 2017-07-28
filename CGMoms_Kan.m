@@ -6,8 +6,9 @@
 function mom = CGMoms_Kan(alpha, MU, SIGMA)
   % Compute the moment of given order of the multivariate Gaussian
   % distribution given by its mean vector and its covariance matrix.
-  % Reference: Kan, R. (2008). From moments of sum to moments of product.
-  %            Journal of Multivariate Analysis, 99(3):542 - 554.
+  % Reference: Proposition 2 in [Kan, R. (2008). From moments of sum to
+  %            moments of product. Journal of Multivariate Analysis,
+  %            99(3):542 - 554].
   % @param alpha order of the wanted moment (assumed to be a line,
   %              size 1 * n)
   % @param MU mean vector of the multivariate Gaussian distribution
@@ -17,9 +18,6 @@ function mom = CGMoms_Kan(alpha, MU, SIGMA)
   %              size n * n)
   % @return the moment of order alpha of the multivariate Gaussian
   %         distribution given by MU and SIGMA
-
-  % See Proposition 2 in [Kan, R. (2008), "From moments of sum to moments of
-  % product"].
 
   % The first n sums of the formula are viewed as one sum on all possible
   % combinations. Example (n=2):
