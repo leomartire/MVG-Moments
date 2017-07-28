@@ -1,5 +1,5 @@
 # MVG-Moments
-A MatLab module to compute moments of multivariate Gaussian distributions, including non-trivial ones.
+A Python/Matlab module to compute moments of multivariate Gaussian distributions, including non-trivial ones.
 
 ## Problem Description
 The considered distribution is the classical n-dimensional normalised multivariate Gaussian distribution:
@@ -23,7 +23,7 @@ CGMoms_Kan(alpha, MU, SIGMA)
 ```
 in order to compute only the moment of order `alpha` of \rho.
 
-## Example
+## Example in Matlab
 ```matlab
 n = 2;
 MU = [1; 2];
@@ -41,6 +41,9 @@ alpha_vals = [0, 0;
 moments = CGMoms(alpha_vals, MU, SIGMA, verbose);
 ```
 After the previous execution, `moments` is now a 10 * 1 matrix containing the moments of rho parametrised by `MU` and `SIGMA`.
+
+## Example in Python
+See the file `example.py`.
 
 ## References
 - Kan, R. (2008). From moments of sum to moments of product. Journal of Multivariate Analysis, 99(3):542 - 554.
