@@ -1,3 +1,6 @@
+# Author:        Léo Martire.
+# Mail:          leo.martire@outlook.com
+
 import numpy as np
 import math
 
