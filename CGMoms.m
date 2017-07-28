@@ -52,7 +52,7 @@ function [final_moms] = CGMoms(alpha_vals, MU, SIGMA, verbose)
   if verb == 1
     disp(['[', mfilename, '] Starting computation of ', num2str(size(alpha_vals, 1)), ' moments.'])
   end
-  if ~ any(MU) && isdiag(SIGMA)
+  if ~ any(MU) && all(all(SIGMA==SIGMA(1,1)*eye(size(SIGMA))))
     % If the distribution is standard, use the closed form for %%
     % quickness and precision.                                 %%
     if verb == 1
