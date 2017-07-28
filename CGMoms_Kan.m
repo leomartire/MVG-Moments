@@ -51,7 +51,6 @@ function mom = CGMoms_Kan(alpha, MU, SIGMA)
       h_terms = ((0.5 * h'*SIGMA*h)^r) * ((h' * MU) ^ (card_a - 2 * r));
       % Denominator of the fraction in the formula.
       factorials = factorial(r) * factorial(card_a - 2 * r);
-   
       % Add the product of the terms to the total.
       mom = mom + m_one_power * nchoosek_terms * h_terms / factorials;
     end
