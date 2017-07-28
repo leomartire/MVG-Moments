@@ -58,7 +58,6 @@ function [final_moms] = CGMoms(alpha_vals, MU, SIGMA, verbose)
     if verb == 1
       disp(['[', mfilename, '] Distribution is standard, we use the closed form.'])
     end
-    d = max(sum(alpha_vals, 2));
     sigma = (2 * SIGMA(1, 1)) ^ 0.5; % convert to classic notations
     marg_moms = zeros(1 + d, 1); % Set all marginal moments to zeros (even and odd orders).
     K = 1 + (0:2:d); % Even orders indices (shifted of 1, because 0th order is at index 1 in Matlab).
