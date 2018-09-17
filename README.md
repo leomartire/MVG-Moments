@@ -1,6 +1,8 @@
 # MVG-Moments
 A Python/Matlab module to compute moments of multivariate Gaussian distributions, including non-trivial ones.
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1420235.svg)](https://doi.org/10.5281/zenodo.1420235)
+
 ## Problem Description
 The considered distribution is the classical n-dimensional normalised multivariate Gaussian distribution:
 - \rho(x) := (2\pi)^{-n/2} * (det(\Sigma))^{-1/2} * \exp(- 0.5 * (x - \mu)^T * \Sigma^{-1} * (x - \mu)).
