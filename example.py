@@ -1,3 +1,4 @@
+import numpy as np
 from CGMoms import *
 
 print("Example test case.")

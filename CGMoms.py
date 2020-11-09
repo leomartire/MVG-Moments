@@ -14,30 +14,15 @@ scipy_found = False
 try :
   import scipy
   scipy_found = True
-except ImportError, e:
+except ImportError:
   scipy_found = False
   print("INFO: SciPy not found, functions will use self-made functions instead of SciPy's ones.")
 
 if (scipy_found == False) :
+  # SciPy not found, build self-made functions.
   import math
-  def scalar_comb(n, k):
+  def comb_without_scipy(n, k):
     return (math.factorial(n) / (math.factorial(k) * math.factorial(n - k)))
-
-  def comb_without_scipy(N, K):
-    if (N.shape != K.shape) :
-      NCK = -1
-      print('ERROR: size mismatch.')
-    else :
-      S = N.shape
-      s = N.size
-      N = np.reshape(N, (1, s))# make as line vector
-      K = np.reshape(K, (1, s))# make as line vector
-      NCK = list()
-      for i in range(0, s) :
-        NCK.append(scalar_comb(N[0, i], K[0, i]))
-      NCK = np.reshape(np.array(NCK), S)# Set result back to N original shape.
-    return (NCK)
-
   def gamma_without_scipy(X):
     X = np.array(X)
     X = np.reshape(X, X.size)
@@ -46,13 +31,38 @@ if (scipy_found == False) :
       G[i] = math.gamma(X[i])
     return (G)
 else :
+  # SciPy found, simply import functions.
   from scipy.special import comb # Imported for CGMoms_Kan.
   from scipy.special import gamma # Imported for CGMoms.
 ###############################
 
+
+
 ###############################
 # Main functions.             #
 ###############################
+def vector_comb(N, K):
+  # A vectorial version of the scipy.special.comb function.
+  # @param N number of things [n1, n2, ...]
+  # @param K number of things in a group [k1, k2, ...]
+  # @return V the vector [v1, v2, ...] such that vi = comb(ni, ki) = the number of combinations of ni things taken ki at a time
+  if (N.shape != K.shape) :
+    NCK = -1
+    print('ERROR: size mismatch.')
+  else :
+    S = N.shape
+    s = N.size
+    N = np.reshape(N, (1, s))# make as line vector
+    K = np.reshape(K, (1, s))# make as line vector
+    NCK = list()
+    for i in range(0, s) :
+      if(scipy_found):
+        NCK.append(comb(N[0, i], K[0, i]))
+      else:
+        NCK.append(comb_without_scipy(N[0, i], K[0, i]))
+    NCK = np.reshape(np.array(NCK), S)# Set result back to N original shape.
+  return (NCK)
+
 def CGMoms_Kan(alpha = None, MU = None, SIGMA = None) :
   # Compute the moment of given order of the multivariate Gaussian distribution given by its mean vector and its covariance matrix.
   # Reference: Proposition 2 in [Kan, R. (2008). From moments of sum to moments of product. Journal of Multivariate Analysis, 99(3):542 - 554].
@@ -73,7 +83,8 @@ def CGMoms_Kan(alpha = None, MU = None, SIGMA = None) :
   # do
   #   \sum_{K\in\{(0,0),(0,1),(0,2),(0,3),(1,0),(1,1),(1,2),(1,3),(2,0),(2,1),(2,2),(2,3)\ X(K).
   list_of_indices=["np.arange(0," + str(alpha[i] + 1) + ")" for i in range(0, alpha.size)]
-  exec("beta_vals=np.array(np.meshgrid(" + (", ".join(list_of_indices)) + ")).T.reshape(-1," + str(alpha.size) + ")")
+  ev = "beta_vals=np.array(np.meshgrid(" + (", ".join(list_of_indices)) + ")).T.reshape(-1," + str(alpha.size) + ")"
+  exec(ev, globals())
   
   # As introduced before, consider the sum on all possible combinations, indexed by i. The sum indexed by r in the formula is considered as another sum in itself.
   mom = 0
@@ -87,12 +98,7 @@ def CGMoms_Kan(alpha = None, MU = None, SIGMA = None) :
       # (-1)^{\sum_{i=1}^n(v_i)} from the formula.
       m_one_power = (-1) ** card_b
       # (s_1 choose v_1) * ...*(s_n choose v_n) from the formula.
-      if (scipy_found == False) :
-        nchoosek_terms = np.prod(comb_without_scipy(alpha, beta))
-      else :
-        # TODO: check if this works.
-        print("WARNING: Test first.")
-        # nchoosek_terms = np.prod(comb(alpha, beta, exact=True, repetition=False))
+      nchoosek_terms = np.prod(vector_comb(alpha, beta))
       # Numerator of the fraction in the formula.
       h_terms = ((0.5 * np.dot(np.dot(h, SIGMA), h)) ** r) * (np.dot(h, MU)) ** (card_a - 2 * r)
       # Denominator of the fraction in the formula.
@@ -224,7 +230,6 @@ def CGMoms(alpha_vals, MU, SIGMA, verbose = False) :
     to_be_computed_final = np.setdiff1d(range(0,final_moms.size), already_computed)
     if (to_be_computed_final.size == 0):
       print('INFO: Full formulae: all moments computed.')
-      print(verbose)
     else:
       to_be_computed_final
       print('INFO: Full formulae: some moments still have to be computed.')
