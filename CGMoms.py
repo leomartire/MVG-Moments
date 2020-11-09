@@ -139,9 +139,7 @@ def CGMoms(alpha_vals, MU, SIGMA, verbose = False) :
     if (scipy_found == False) :
       marg_moms[K] = sigma ** (K+1) * gamma_without_scipy((K+1)/2.0)
     else :
-      # TODO: check if this works.
-      print("WARNING: Test first.")
-      # marg_moms[K] = sigma ** (K+1) * gamma((K+1)/2.0)
+      marg_moms[K] = sigma ** (K+1) * gamma((K+1)/2.0)
     final_moms = np.zeros(alpha_vals.shape[0]) # Prepare storage.
     is_odd = np.mod(np.sum(alpha_vals, 1), 2) # Vector which is 1 where total degree is odd (and 0 otherwise).
     final_moms[is_odd == 0] = np.prod(marg_moms[alpha_vals[is_odd == 0]], 1) # Set nonzero (even total degree) moments to their values (product of marginal moments).
